@@ -1,3 +1,4 @@
+##
 ## VECTORS #####################################################################
   #construct specific vector
 vec <- c(1,2,3)
@@ -16,6 +17,7 @@ apped(vec, 4:6, after=length(vec)) #or
 vec <- c(vec, 4:6)
 
 
+##
 ## MATRIX ######################################################################
 matrix()
   #example
@@ -29,7 +31,11 @@ mat1 <- matrix(
 mat1[1,2] #first row, second coloumn
 mat1[1,]  #entire first row
 mat1[]    #entire matrix
+  #operations
+solve(mat, v) #returns vector x in v=mat*x
 
+
+##
 ## LISTS #######################################################################
 #data structure containing components of mixed data types
 list()
@@ -40,6 +46,7 @@ list[c(1:3)] #returns all contents
 list$a #returns 1.5
 
 
+##
 ## DATA-FRAMES #################################################################
 #list, where each component has same length
   # df skeleton
@@ -61,6 +68,7 @@ nrows(data) #returns number of cols and rows
 length(data) #returns length of all attribs
 
 
+##
 ## FUNCTIONS ###################################################################
   # function skeleton
 functionName <- function(param){
