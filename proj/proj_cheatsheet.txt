@@ -3,11 +3,11 @@
 #installation: https://proj.org/install.htmlµ
 
 # Bundled with PROJ comes a set of small command line utilities.
-# proj: converting between geographic and projection coordinates within one datum.
+# proj: converting between geographic and projection coordinates within one datum. USES LON LAT
 # cs2cs: similarly to proj, allows translation between any pair of definable coordinate systems, including support for datum transformation.
 # geod: geodesic (great circle) computations.
 # gie: regression tests in PROJ.
-# cct: 4D equivalent to the proj program, performs transformation coordinate systems on a set of input points, has a compontent of time
+# cct: 4D equivalent to the proj program, performs transformation coordinate systems on a set of input points, has a compontent of time. USES LAT LON
 # projinfo: queries for geodetic objects and coordinate operations.
 # projsync: synchronizing PROJ datum and transformation support data.
 
@@ -15,3 +15,7 @@
 ##calculate distance
 # example
 echo Lat1 Lon1 Lat2 Lon2 | geod -I +ellps=GRS80 +units=m
+
+##pipeline
+# example
+echo lon lat h | cct +proj=pipeline +step +proj=cart +ellps=GRS80 +step +proj=helmert +convention=position_vector +x=0.0254 +y=-0.0005 +z=-0.1548 +s=0.01129 +rx=0.1 +ry=0.0 +rz=0.26 +step +proj=cart +ellps=GRS80 +inv
