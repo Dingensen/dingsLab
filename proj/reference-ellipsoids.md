@@ -12,3 +12,4 @@
 |IERS (2003)[4] 	|6,378,136.6  |	6,356,751.9     |298.25642 |	[3]|
 
 source: https://en.wikipedia.org/wiki/Earth_ellipsoid
+µ

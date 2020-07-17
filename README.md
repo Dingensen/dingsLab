@@ -3,6 +3,9 @@ A library of coding snippets that will hopefully prove to be useful for future p
 
 (Work In Progress)
 
+## webDev
+collection of mostly javascript in conjunction with HTML
+
 ## R
 collection of code snippets for the R programming language
 
