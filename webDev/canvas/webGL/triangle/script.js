@@ -14,25 +14,32 @@
 var c;
 var gl;
 
-var vertexShaderText = [
-  'precision mediump float;',
 
-  'attribute vec2 vertPosition;',
 
-  'void main()',
-  '{',
-  ' gl_Position = vec4(vertPosition, 0.0, 1.0);',
-  '}',
-].join('\n');
+var vertexShaderText = `
+  precision mediump float;
 
-var fragmentShaderText = [
-  'precision mediump float;',
+  attribute vec2 vertPosition;
+  attribute vec3 vertColor;
 
-  'void main()',
-  '{',
-  ' gl_FragColor = vec4(0.9, 0.2, 0.1, 1.0);',
-  '}',
-].join('\n');
+  varying vec3 fragColor;
+
+  void main()
+  {
+   fragColor = vertColor;
+   gl_Position = vec4(vertPosition, 0.0, 1.0);
+  }
+`;
+
+var fragmentShaderText = `
+  precision mediump float;
+
+  varying vec3 fragColor;
+  void main()
+  {
+   gl_FragColor = vec4(fragColor, 1.0);
+  }
+`;
 
 function init(){
   console.log("initialising...");
@@ -101,9 +108,10 @@ function init(){
   //
   //create buffer
   var triangleVerts =[
-     0.0,  0.5,
-    -0.5, -0.5,
-     0.5, -0.5
+  // X     Y      R     G     B
+     0.0,  0.5,   1.0,  0,    0,
+    -0.5, -0.5,   0,    1.0,  0,
+     0.5, -0.5,   0,    0,    1.0
   ];
 
   //bind and fill buffer
@@ -119,18 +127,28 @@ function init(){
     gl.STATIC_DRAW
   );
 
-  //get glsl-position of vertPositions
+  //get glsl-positions of attributes
   var positionAttribLocation = gl.getAttribLocation(program, 'vertPosition');
-  //set its layout
+  var colorAttribLocation = gl.getAttribLocation(program, 'vertColor');
+  //set their layouts
   gl.vertexAttribPointer(
     positionAttribLocation,   //attribute location
     2,                        //Number of elements per attribute
     gl.FLOAT,                 //Type of elements
     gl.false,                 //Whether or not data is normalised
-    2 * Float32Array.BYTES_PER_ELEMENT, //size of individual vertex
+    5 * Float32Array.BYTES_PER_ELEMENT, //size of individual vertex
     0                   //offset from beginning of single vertex to this attrib
   );
+  gl.vertexAttribPointer(
+    colorAttribLocation,   //attribute location
+    3,                        //Number of elements per attribute
+    gl.FLOAT,                 //Type of elements
+    gl.false,                 //Whether or not data is normalised
+    5 * Float32Array.BYTES_PER_ELEMENT, //size of individual vertex
+    2 * Float32Array.BYTES_PER_ELEMENT, //offset from beginning of single vertex to this attrib
+  );
   gl.enableVertexAttribArray(positionAttribLocation);
+  gl.enableVertexAttribArray(colorAttribLocation);
 
 
   //
