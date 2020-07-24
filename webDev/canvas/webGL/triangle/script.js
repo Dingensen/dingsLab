@@ -14,8 +14,6 @@
 var c;
 var gl;
 
-
-
 var vertexShaderText = `
   precision mediump float;
 
@@ -150,10 +148,8 @@ function init(){
   gl.enableVertexAttribArray(positionAttribLocation);
   gl.enableVertexAttribArray(colorAttribLocation);
 
-
-  //
-  // RENDER LOOP
-  //
+  //this is where the render loop would be
+  // but this scene is not animated. so we just draw 1 picture
   gl.useProgram(program);
   gl.drawArrays(gl.TRIANGLES,
     0,  //how many vertices to skip
