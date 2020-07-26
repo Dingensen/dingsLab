@@ -1,0 +1,2 @@
+requires a running instance of mongodb on port 27017.
+requires node js.
