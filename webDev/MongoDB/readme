@@ -1,2 +1,4 @@
 requires a running instance of mongodb on port 27017.
 requires node js.
+
+remember to clean up your databases after running the examples

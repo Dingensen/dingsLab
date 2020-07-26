@@ -1,0 +1,6 @@
+
+show dbs
+use <db name>
+show collections
+
+db.collectionName.find().pretty
